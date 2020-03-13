@@ -58,9 +58,7 @@
         },
         components: {},
         methods: {
-            addQuestion() {
-                console.log('add', this.questions)
-            }
+            addQuestion() {}
         }
     }
 </script>

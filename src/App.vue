@@ -40,15 +40,15 @@ export default {
     this.score.total = this.questions.length;
   },
   methods: {
-    addScore({ questionIdx, answerIdx, correct }) {
-      console.log('App :: addScore :: ', questionIdx, answerIdx, correct);
+    addScore({ correct }) {
+      // console.log('App :: addScore :: ', questionIdx, answerIdx, correct);
       this.answers.push(correct);
       this.score.correct += correct ? 1 : 0;
       this.score.answered = this.answers.length;
       this.score.complete =  `${(((this.answers.length / this.questions.length) * 100).toFixed(0))}%`;
     },
     addQuestion() {
-      console.log('add', this.questions)
+      // console.log('add', this.questions)
     }
   }
 }
