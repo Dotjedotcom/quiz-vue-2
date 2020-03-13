@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div class="container-fluid navbar navbar-dark bg-dark shadow-sm fixed-top">
+      <div class="container">
+        <div class="navbar-brand d-flex align-items-center">
+          {{ title }}
+        </div>
+        <div class="navbar-item">
+          <p>Score: {{ score }}</p>
+        </div>
+      </div>
+    </div>
+    <Quiz :questions="questions" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Quiz from './components/Quiz.vue'
+import { QUIZ_DATA } from './assets/data/quiz'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Quiz
+  },
+  data: () => ({
+    title: QUIZ_DATA.title,
+    questions: QUIZ_DATA.questions,
+    score: 0,
+    currentQuestion: 0,
+  }),
+  methods: {
+    addQuestion() {
+      console.log('add', this.questions)
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
