@@ -1,12 +1,16 @@
 <template>
+
   <div class="top-container">
+
     <BaseNavbar :title="title"
-                :score="score">
-    </BaseNavbar>
+                :score="score" />
+
     <Quiz :questions="questions"
           :addQuestion="addQuestion"
           :addScore="addScore" />
+
   </div>
+
 </template>
 
 <script>
@@ -41,8 +45,7 @@ export default {
       this.answers.push(correct);
       this.score.correct += correct ? 1 : 0;
       this.score.answered = this.answers.length;
-      this.score.complete =  `${(((this.answers.length / this.questions.length) * 100)
-              .toFixed(0))}%`;
+      this.score.complete =  `${(((this.answers.length / this.questions.length) * 100).toFixed(0))}%`;
     },
     addQuestion() {
       console.log('add', this.questions)
@@ -52,20 +55,25 @@ export default {
 </script>
 
 <style lang="scss">
+
     .top-container {
         height: 100vh;
         width: 100vw;
         overflow: hidden;
+
         .quiz.container {
             height: calc(100% - 150px);
             overflow-y: scroll;
+
             .card:last-child {
                 margin-bottom: 600px;
             }
         }
     }
+
     .container-fluid {
         height: 100vh;
         width: 100vw;
     }
+
 </style>

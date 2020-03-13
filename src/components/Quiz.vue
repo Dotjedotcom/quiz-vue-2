@@ -1,11 +1,27 @@
 <template>
-    <div id="quiz" class="quiz container">
-        <div v-for="(question, questionIdx) in questions" :key="questionIdx" class="card" :id="questionIdx">
+
+    <div id="quiz"
+         class="quiz container">
+
+        <div class="card"
+             v-for="(question, questionIdx) in questions"
+             :key="questionIdx"
+             :id="questionIdx">
+
             <div class="card-body">
-                <p class="card-title" v-html="question.title"></p>
+
+                <p class="card-title"
+                   v-html="question.title">
+                </p>
+
                 <ul class="list-group">
-                    <li v-for="( answer, answerIdx ) in question.answers" :key="answerIdx" class="list-group-item">
+
+                    <li class="list-group-item"
+                        v-for="( answer, answerIdx ) in question.answers"
+                        :key="answerIdx">
+
                         <div class="form-check">
+
                             <input class="form-check-input"
                                    type="radio"
                                    :name="'test' + questionIdx"
@@ -14,27 +30,38 @@
                                    @change.prevent="handleAnswer({ questionIdx, answerIdx, correct: question.correct === question.answer })"
                                    :value="answerIdx"
                                    :id="'answer' + questionIdx + answerIdx">
+
                             <label class="form-check-label"
-                                   v-bind:for="'answer' + questionIdx + answerIdx">
+                                   :for="'answer' + questionIdx + answerIdx">
                                 {{ answer.answer }}
                             </label>
+
                         </div>
+
                     </li>
+
                 </ul>
+
                 <div class="alert"
-                     v-bind:class="{
+                     :class="{
                   'alert-dark': question.answer === null,
                   'alert-danger': question.correct !== question.answer,
                   'alert-success': question.correct === question.answer
                   }">
+
                     <div>{{ question.answers[question.answer] &&
                             question.answers[question.answer].remark ||
                             'Nog geen antwoord gegeven.' }}
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </template>
 
 <script>
@@ -52,25 +79,21 @@
                 this.scrollDown(questionIdx);
             },
             scrollDown(id) {
-                console.log('scroll', id, this.questions.length)
                 id = this.questions.length === id + 1 ? 0 : id + 1;
                 const element = document.getElementById(id);
                 if (element) {
                     element.scrollIntoView({
                         behaviour: 'smooth',
                         block: 'start',
-                        // inline: 'start'
                     });
                 }
-
             }
-
         }
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+
     .quiz {
         margin-top: 100px;
 
@@ -85,4 +108,5 @@
             }
         }
     }
+
 </style>
